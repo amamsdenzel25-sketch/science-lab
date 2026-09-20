@@ -1,7 +1,7 @@
 {
   "name": "Science Lab",
   "short_name": "Science Lab",
-  "description": "Interactive physics, chemistry, astronomy and science experiments.",
+  "description": "Science Lab: interactive physics, chemistry, astronomy, experiments and science quizzes.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#07111f",

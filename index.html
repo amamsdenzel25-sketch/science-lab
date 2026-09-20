@@ -11,14 +11,19 @@
 </head>
 <body>
 <header class="nav"><a class="logo" href="#home">🔬 Science Lab</a>
-<nav><a href="#physics">Physics</a><a href="#chemistry">Chemistry</a><a href="#astronomy">Astronomy</a><a href="#ideas">Ideas</a></nav></header>
+<nav><a href="#physics">Physics</a><a href="#chemistry">Chemistry</a><a href="#astronomy">Astronomy</a><a href="#experiments">Experiments</a><a href="#quizzes">Quizzes</a><a href="#ideas">Ideas</a></nav></header>
 
 <main>
 <section id="home" class="hero"><div>
 <p class="eyebrow">LEARN • EXPERIMENT • DISCOVER</p>
 <h1>Science is better when you can <span>explore it.</span></h1>
 <p class="hero-text">An interactive science playground for curious minds. Change values, run simulations, test ideas and learn why things happen.</p>
-<div class="buttons"><a class="button primary" href="#physics">Enter the Physics Lab</a><a class="button secondary" href="#chemistry">Explore Chemistry</a></div>
+<div class="buttons"><a class="button primary" href="#physics">Enter the Physics Lab</a><a class="button secondary" href="#quizzes">Take a Quiz</a></div>
+<div class="quick-stats">
+  <div><strong id="quizScore">0</strong><span>Quiz points</span></div>
+  <div><strong id="badgeCount">0</strong><span>Badges</span></div>
+  <div><strong>5</strong><span>Physics labs</span></div>
+</div>
 </div><div class="orbital"><div class="atom">⚛</div><div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div></div></section>
 
 <section class="section" id="physics">
@@ -69,10 +74,66 @@
 <section class="section" id="astronomy"><div class="section-heading"><p class="eyebrow">ASTRONOMY</p><h2>Look beyond Earth.</h2></div>
 <div class="space-card"><div class="space-orbit">🪐</div><div><h3>A universe of questions</h3><p>Future versions can include a solar-system explorer, planet comparisons, star facts and orbital simulations.</p><button class="button primary" onclick="showMessage('Astronomy Lab is on the roadmap!')">Plan an exploration</button></div></div></section>
 
+
+<section class="section tinted" id="experiments">
+  <div class="section-heading">
+    <p class="eyebrow">VIRTUAL EXPERIMENTS</p>
+    <h2>Learn by changing variables.</h2>
+    <p>These activities are designed as safe, educational simulations. Try a prediction first, then change one variable at a time.</p>
+  </div>
+  <div class="experiment-grid">
+    <article class="card experiment-card">
+      <div class="icon">🧪</div>
+      <h3>Concentration Explorer</h3>
+      <label>Solute <b><span id="soluteValue">20</span>%</b>
+        <input id="solute" type="range" min="0" max="100" value="20">
+      </label>
+      <div class="meter"><span id="soluteMeter"></span></div>
+      <p id="soluteText">A dilute solution.</p>
+    </article>
+    <article class="card experiment-card">
+      <div class="icon">🌡️</div>
+      <h3>Temperature Lab</h3>
+      <label>Temperature <b><span id="tempValue">25</span>°C</b>
+        <input id="temp" type="range" min="-20" max="100" value="25">
+      </label>
+      <div class="temperature-display" id="tempDisplay">25°C</div>
+      <p id="tempText">Room-temperature conditions.</p>
+    </article>
+    <article class="card experiment-card">
+      <div class="icon">🔭</div>
+      <h3>Observation Challenge</h3>
+      <p>Choose a question before you investigate: “What changes if I increase only one variable?”</p>
+      <button class="text-button" id="observationButton">Make a prediction →</button>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="quizzes">
+  <div class="section-heading">
+    <p class="eyebrow">SCIENCE QUIZ</p>
+    <h2>Test what you know.</h2>
+    <p>Answer a few questions and earn points. Your score is saved on this device.</p>
+  </div>
+  <div class="quiz-card">
+    <div class="quiz-top"><span id="quizProgress">Question 1 of 5</span><strong id="quizPoints">0 points</strong></div>
+    <h3 id="quizQuestion">Loading question…</h3>
+    <div id="quizAnswers" class="quiz-answers"></div>
+    <p id="quizFeedback" class="quiz-feedback"></p>
+    <button class="button primary hidden" id="nextQuestion">Next question →</button>
+    <button class="button secondary hidden" id="restartQuiz">Restart quiz</button>
+  </div>
+  <div class="badges">
+    <div class="badge locked" id="badgeFirst"><span>🏅</span><div><strong>First Answer</strong><small>Answer a quiz question.</small></div></div>
+    <div class="badge locked" id="badgePerfect"><span>🏆</span><div><strong>Perfect Quiz</strong><small>Get all 5 questions correct.</small></div></div>
+    <div class="badge locked" id="badgeExplorer"><span>🔬</span><div><strong>Explorer</strong><small>Try a virtual experiment.</small></div></div>
+  </div>
+</section>
+
 <section class="section" id="ideas"><div class="section-heading"><p class="eyebrow">SCIENTIFIC IDEAS</p><h2>What would you investigate?</h2></div>
 <div class="idea-box"><div><h3>Start with a question.</h3><p>Write a question or hypothesis and save it as a future project.</p></div><button class="button primary" id="ideaButton">Share an idea</button></div></section>
 </main>
-<footer><strong>🔬 Science Lab</strong><span>Built for curious minds.</span></footer><div id="toast" class="toast"></div>
+<footer><strong>🔬 Science Lab</strong><span>Learn • Experiment • Discover</span></footer><div id="toast" class="toast"></div>
 <script src="script.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
