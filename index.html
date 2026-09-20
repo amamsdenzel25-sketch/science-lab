@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Science Lab — Interactive Science</title>
+<link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b1f3a">
+  <link rel="icon" href="icon-192.png">
+</head>
+<body>
+<header class="nav"><a class="logo" href="#home">🔬 Science Lab</a>
+<nav><a href="#physics">Physics</a><a href="#chemistry">Chemistry</a><a href="#astronomy">Astronomy</a><a href="#ideas">Ideas</a></nav></header>
+
+<main>
+<section id="home" class="hero"><div>
+<p class="eyebrow">LEARN • EXPERIMENT • DISCOVER</p>
+<h1>Science is better when you can <span>explore it.</span></h1>
+<p class="hero-text">An interactive science playground for curious minds. Change values, run simulations, test ideas and learn why things happen.</p>
+<div class="buttons"><a class="button primary" href="#physics">Enter the Physics Lab</a><a class="button secondary" href="#chemistry">Explore Chemistry</a></div>
+</div><div class="orbital"><div class="atom">⚛</div><div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div></div></section>
+
+<section class="section" id="physics">
+<div class="section-heading"><p class="eyebrow">INTERACTIVE PHYSICS LAB</p><h2>Experiment with the laws of motion.</h2><p>Choose a laboratory and change the variables. The results update instantly.</p></div>
+<div class="lab-tabs">
+<button class="tab active" data-lab="projectile">🚀 Projectile</button><button class="tab" data-lab="newton">⚖️ Newton's 2nd Law</button><button class="tab" data-lab="gravity">🌍 Gravity</button><button class="tab" data-lab="energy">⚡ Energy</button><button class="tab" data-lab="collision">💥 Collision</button>
+</div>
+
+<div class="lab-panel" id="projectileLab"><div class="controls"><h3>Projectile Motion</h3>
+<label>Velocity <b><span id="pVelocityValue">20</span> m/s</b><input id="pVelocity" type="range" min="5" max="50" value="20"></label>
+<label>Launch angle <b><span id="pAngleValue">45</span>°</b><input id="pAngle" type="range" min="10" max="80" value="45"></label>
+<div class="results"><div>Range<strong id="pRange">40.8 m</strong></div><div>Max height<strong id="pHeight">10.2 m</strong></div><div>Flight time<strong id="pTime">2.88 s</strong></div></div></div>
+<div class="simulation"><canvas id="projectileCanvas"></canvas></div></div>
+
+<div class="lab-panel hidden" id="newtonLab"><div class="controls"><h3>Newton's Second Law</h3><p class="formula">F = m × a</p>
+<label>Force <b><span id="forceValue">20</span> N</b><input id="force" type="range" min="1" max="100" value="20"></label>
+<label>Mass <b><span id="massValue">5</span> kg</b><input id="mass" type="range" min="1" max="50" value="5"></label>
+<div class="big-result">Acceleration<strong id="acceleration">4.00 m/s²</strong></div></div>
+<div class="visual"><div id="forceBox">20 N</div><div class="arrow">→</div><p>More net force means more acceleration. More mass means less acceleration for the same force.</p></div></div>
+
+<div class="lab-panel hidden" id="gravityLab"><div class="controls"><h3>Gravity Lab</h3>
+<label>Planet<select id="planet"><option value="9.81">🌍 Earth — 9.81 m/s²</option><option value="1.62">🌙 Moon — 1.62 m/s²</option><option value="3.71">🔴 Mars — 3.71 m/s²</option><option value="24.79">🟠 Jupiter — 24.79 m/s²</option></select></label>
+<label>Object mass <b><span id="gMassValue">10</span> kg</b><input id="gMass" type="range" min="1" max="100" value="10"></label>
+<div class="big-result">Weight<strong id="weight">98.1 N</strong></div></div>
+<div class="visual"><div class="planet">🪐</div><div class="arrow">↓</div><p>Mass stays the same; weight changes with local gravity.</p></div></div>
+
+<div class="lab-panel hidden" id="energyLab"><div class="controls"><h3>Kinetic Energy</h3><p class="formula">KE = ½mv²</p>
+<label>Mass <b><span id="eMassValue">10</span> kg</b><input id="eMass" type="range" min="1" max="100" value="10"></label>
+<label>Velocity <b><span id="eVelocityValue">10</span> m/s</b><input id="eVelocity" type="range" min="1" max="40" value="10"></label>
+<div class="big-result">Kinetic energy<strong id="kinetic">500 J</strong></div></div>
+<div class="visual"><div id="energyBall">⚡</div><p>Velocity has a squared effect on kinetic energy.</p></div></div>
+
+<div class="lab-panel hidden" id="collisionLab"><div class="controls"><h3>Collision Lab</h3>
+<label>Object A mass <b><span id="aMassValue">5</span> kg</b><input id="aMass" type="range" min="1" max="20" value="5"></label>
+<label>Object A velocity <b><span id="aVelValue">8</span> m/s</b><input id="aVel" type="range" min="-15" max="15" value="8"></label>
+<label>Object B mass <b><span id="bMassValue">5</span> kg</b><input id="bMass" type="range" min="1" max="20" value="5"></label>
+<label>Object B velocity <b><span id="bVelValue">-3</span> m/s</b><input id="bVel" type="range" min="-15" max="15" value="-3"></label>
+<div class="big-result">Final shared velocity<strong id="finalVelocity">2.50 m/s</strong></div></div>
+<div class="visual collision"><div class="ball ball-a">A</div><div class="ball ball-b">B</div><p>Idealized perfectly inelastic collision: momentum is conserved.</p></div></div>
+<p class="note">Educational simulations only. Real experiments require appropriate equipment, supervision and safety procedures.</p>
+</section>
+
+<section class="section tinted" id="chemistry"><div class="section-heading"><p class="eyebrow">CHEMISTRY</p><h2>Explore matter, atoms and reactions.</h2></div>
+<div class="cards"><article class="card"><div class="icon">🧪</div><h3>Reaction Explorer</h3><p>Compare reactants and products and learn how atoms rearrange.</p><button class="text-button" onclick="showMessage('Reaction Explorer is coming next!')">Open lab →</button></article>
+<article class="card"><div class="icon">⚗️</div><h3>Periodic Table</h3><p>Explore elements, symbols, atomic numbers and useful facts.</p><button class="text-button" onclick="showMessage('The interactive periodic table is coming next!')">Explore →</button></article>
+<article class="card"><div class="icon">🧫</div><h3>Solutions</h3><p>Learn concentration, dilution and mixtures through safe virtual experiments.</p><button class="text-button" onclick="showMessage('The virtual solutions lab is coming next!')">Experiment →</button></article></div></section>
+
+<section class="section" id="astronomy"><div class="section-heading"><p class="eyebrow">ASTRONOMY</p><h2>Look beyond Earth.</h2></div>
+<div class="space-card"><div class="space-orbit">🪐</div><div><h3>A universe of questions</h3><p>Future versions can include a solar-system explorer, planet comparisons, star facts and orbital simulations.</p><button class="button primary" onclick="showMessage('Astronomy Lab is on the roadmap!')">Plan an exploration</button></div></div></section>
+
+<section class="section" id="ideas"><div class="section-heading"><p class="eyebrow">SCIENTIFIC IDEAS</p><h2>What would you investigate?</h2></div>
+<div class="idea-box"><div><h3>Start with a question.</h3><p>Write a question or hypothesis and save it as a future project.</p></div><button class="button primary" id="ideaButton">Share an idea</button></div></section>
+</main>
+<footer><strong>🔬 Science Lab</strong><span>Built for curious minds.</span></footer><div id="toast" class="toast"></div>
+<script src="script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(console.error);
+      });
+    }
+  </script>
+</body></html>
