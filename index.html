@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Science Lab — Interactive Science</title>
+<title>Science Lab V11 — Interactive Science</title>
 <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0b1f3a">
   <link rel="icon" href="icon-192.png">
+<style>.biology-card{cursor:default}.biology-action{margin-top:8px}.biology-action:focus-visible{outline:2px solid var(--accent);outline-offset:3px}</style>
 </head>
 <body>
 <header class="nav"><a class="logo" href="#home">🔬 Science Lab</a>
-<nav><a href="#physics">Physics</a><a href="#chemistry">Chemistry</a><a href="#astronomy">Astronomy</a><a href="#experiments">Experiments</a><a href="#quizzes">Quizzes</a><a href="#ideas">Ideas</a></nav></header>
+<nav><a href="#physics">Physics</a><a href="#chemistry">Chemistry</a><a href="#astronomy">Astronomy</a><a href="#experiments">Experiments</a><a href="#colour-game">Colour Game</a><a href="#quizzes">Quizzes</a></nav></header>
 
 <main>
 <section id="home" class="hero"><div>
-<p class="eyebrow">LEARN • EXPERIMENT • DISCOVER</p>
-<h1>Science is better when you can <span>explore it.</span></h1>
-<p class="hero-text">An interactive science playground for curious minds. Change values, run simulations, test ideas and learn why things happen.</p>
-<div class="buttons"><a class="button primary" href="#physics">Enter the Physics Lab</a><a class="button secondary" href="#quizzes">Take a Quiz</a></div>
+<p class="eyebrow">SCIENCE LAB • V5</p>
+<h1>Explore science. <span>Think deeper.</span></h1>
+<p class="hero-text">A focused interactive learning space for physics, chemistry, astronomy, biology, mathematics, experiments and games.</p>
+<div class="buttons"><a class="button primary" href="#astronomy">Explore the labs</a><a class="button secondary" href="#colour-game">Play Colour Game</a></div>
 <div class="quick-stats">
   <div><strong id="quizScore">0</strong><span>Quiz points</span></div>
   <div><strong id="badgeCount">0</strong><span>Badges</span></div>
@@ -66,13 +67,34 @@
 <p class="note">Educational simulations only. Real experiments require appropriate equipment, supervision and safety procedures.</p>
 </section>
 
-<section class="section tinted" id="chemistry"><div class="section-heading"><p class="eyebrow">CHEMISTRY</p><h2>Explore matter, atoms and reactions.</h2></div>
-<div class="cards"><article class="card"><div class="icon">🧪</div><h3>Reaction Explorer</h3><p>Compare reactants and products and learn how atoms rearrange.</p><button class="text-button" onclick="showMessage('Reaction Explorer is coming next!')">Open lab →</button></article>
-<article class="card"><div class="icon">⚗️</div><h3>Periodic Table</h3><p>Explore elements, symbols, atomic numbers and useful facts.</p><button class="text-button" onclick="showMessage('The interactive periodic table is coming next!')">Explore →</button></article>
-<article class="card"><div class="icon">🧫</div><h3>Solutions</h3><p>Learn concentration, dilution and mixtures through safe virtual experiments.</p><button class="text-button" onclick="showMessage('The virtual solutions lab is coming next!')">Experiment →</button></article></div></section>
+<section class="section tinted" id="chemistry">
+<div class="section-heading"><p class="eyebrow">CHEMISTRY LAB</p><h2>Explore reactions, elements and solutions.</h2><p>Three working mini-labs you can use directly inside Science Lab.</p></div>
+<div class="chemistry-grid">
+  <article class="card chem-tool">
+    <div class="icon">🧪</div><h3>Reaction Explorer</h3><p>Choose a reaction and see the reactants, products and what changes.</p>
+    <label>Reaction <select id="reactionSelect"><option value="water">Hydrogen + Oxygen → Water</option><option value="co2">Carbon + Oxygen → Carbon dioxide</option><option value="salt">Sodium + Chlorine → Sodium chloride</option></select></label>
+    <div class="reaction-equation" id="reactionEquation">2H₂ + O₂ → 2H₂O</div>
+    <div class="reaction-facts"><span id="reactionLeft">Reactants: Hydrogen + Oxygen</span><span id="reactionRight">Product: Water</span></div>
+    <button class="text-button" id="runReaction">Run reaction →</button>
+    <p class="lab-status" id="reactionStatus">Ready to explore.</p>
+  </article>
+  <article class="card chem-tool">
+    <div class="icon">⚛️</div><h3>Interactive Periodic Table</h3><p>Click an element to see its symbol, atomic number and a quick fact.</p>
+    <div class="periodic-table" id="periodicTable"></div>
+    <div class="element-info"><strong id="elementName">Hydrogen</strong><span id="elementSymbol">H</span><span id="elementNumber">Atomic number 1</span><p id="elementFact">The lightest element and the most abundant element in the universe.</p></div>
+  </article>
+  <article class="card chem-tool">
+    <div class="icon">🧫</div><h3>Solutions Lab</h3><p>Mix solute and water and watch concentration update instantly.</p>
+    <label>Solute <b><span id="solutionSoluteValue">20</span> g</b><input id="solutionSolute" type="range" min="0" max="100" value="20"></label>
+    <label>Water <b><span id="solutionWaterValue">80</span> mL</b><input id="solutionWater" type="range" min="20" max="200" value="80"></label>
+    <div class="solution-beaker"><div id="solutionLiquid"></div><span id="solutionConcentration">20.0%</span></div>
+    <div class="results solution-results"><div>Concentration<strong id="solutionPercent">20.0%</strong></div><div>Mixture<strong id="solutionTotal">100 g/mL*</strong></div></div>
+    <p class="small-note">*Simplified educational model: concentration is calculated as solute ÷ (solute + water) × 100.</p>
+  </article>
+</div></section>
 
-<section class="section" id="astronomy"><div class="section-heading"><p class="eyebrow">ASTRONOMY</p><h2>Look beyond Earth.</h2></div>
-<div class="space-card"><div class="space-orbit">🪐</div><div><h3>A universe of questions</h3><p>Future versions can include a solar-system explorer, planet comparisons, star facts and orbital simulations.</p><button class="button primary" onclick="showMessage('Astronomy Lab is on the roadmap!')">Plan an exploration</button></div></div></section>
+<section class="section astronomy-section" id="astronomy"><div class="section-heading"><p class="eyebrow">ASTRONOMY LAB</p><h2>Explore the Solar System.</h2><p>Select a planet to see its facts and compare it with Earth.</p></div>
+<div class="astro-lab"><div class="planet-stage"><div id="astroPlanet" class="astro-planet">🌍</div><div class="orbit-ring ring-a"></div><div class="orbit-ring ring-b"></div></div><div class="astro-info"><div class="astro-kicker" id="astroType">TERRESTRIAL PLANET</div><h3 id="astroName">Earth</h3><p id="astroDescription">Our home world, with liquid surface water and a nitrogen-rich atmosphere.</p><div class="astro-stats"><div><span>Gravity</span><strong id="astroGravity">9.81 m/s²</strong></div><div><span>Year</span><strong id="astroYear">365 days</strong></div><div><span>Moons</span><strong id="astroMoons">1</strong></div></div><div class="planet-picker" id="planetPicker"><button data-planet="mercury">Mercury</button><button data-planet="venus">Venus</button><button class="active" data-planet="earth">Earth</button><button data-planet="mars">Mars</button><button data-planet="jupiter">Jupiter</button><button data-planet="saturn">Saturn</button><button data-planet="uranus">Uranus</button><button data-planet="neptune">Neptune</button></div></div></div></section>
 
 
 <section class="section tinted" id="experiments">
@@ -109,6 +131,60 @@
   </div>
 </section>
 
+<section class="section" id="mathematics">
+  <div class="section-heading"><p class="eyebrow">MATHEMATICS LAB</p><h2>Do the maths — don't just read about it.</h2><p>Start with arithmetic, move to geometry, then finish with algebra. Every tool below is interactive.</p></div>
+  <div class="math-tabs">
+    <button class="math-tab active" data-math="arithmetic">➕ Arithmetic</button>
+    <button class="math-tab" data-math="geometry">📐 Geometry</button>
+    <button class="math-tab" data-math="algebra">🔢 Algebra</button>
+  </div>
+  <div class="math-panel" id="arithmeticMath">
+    <div class="math-grid">
+      <div class="math-tool"><h3>Arithmetic Calculator</h3><p>Choose an operation and calculate instantly.</p>
+        <div class="math-inputs"><input id="arithA" type="number" value="12" aria-label="First number"><select id="arithOp"><option value="+">+</option><option value="-">−</option><option value="*">×</option><option value="/">÷</option></select><input id="arithB" type="number" value="4" aria-label="Second number"></div>
+        <button class="button primary" id="calculateArithmetic">Calculate →</button><div class="math-result" id="arithResult">Result will appear here.</div>
+      </div>
+      <div class="math-tool"><h3>Fraction Helper</h3><p>Turn a fraction into a decimal and percentage.</p>
+        <div class="math-inputs"><input id="fracNum" type="number" value="3" min="-1000" aria-label="Numerator"><span>/</span><input id="fracDen" type="number" value="4" min="1" aria-label="Denominator"></div>
+        <button class="button secondary" id="calculateFraction">Convert →</button><div class="math-result" id="fracResult">0.75 = 75%</div>
+      </div>
+    </div>
+    <button class="button primary math-next" data-go="geometry">Next: Geometry →</button>
+  </div>
+  <div class="math-panel hidden" id="geometryMath">
+    <div class="math-grid">
+      <div class="math-tool"><h3>Angles</h3><p>Set an angle and identify it.</p><label>Angle <b><span id="angleValue">90</span>°</b><input id="angleInput" type="range" min="0" max="360" value="90"></label><div class="math-result" id="angleResult">Right angle</div></div>
+      <div class="math-tool"><h3>Shape Calculator</h3><p>Calculate perimeter and area.</p><select id="shapeType"><option value="rectangle">Rectangle</option><option value="square">Square</option><option value="triangle">Triangle</option><option value="circle">Circle</option></select><div id="shapeInputs" class="shape-inputs"></div><button class="button secondary" id="calculateShape">Calculate →</button><div class="math-result" id="shapeResult">Enter measurements.</div></div>
+    </div>
+    <div class="math-nav"><button class="button secondary math-back" data-go="arithmetic">← Arithmetic</button><button class="button primary math-next" data-go="algebra">Next: Algebra →</button></div>
+  </div>
+  <div class="math-panel hidden" id="algebraMath">
+    <div class="math-grid">
+      <div class="math-tool"><h3>Equation Solver</h3><p>Solve equations in the form <strong>ax + b = c</strong>.</p>
+        <div class="equation-row"><input id="algA" type="number" value="2" aria-label="a"><span>x +</span><input id="algB" type="number" value="6" aria-label="b"><span>=</span><input id="algC" type="number" value="14" aria-label="c"></div>
+        <button class="button primary" id="solveAlgebra">Solve x →</button><div class="math-result" id="algResult">x = 4</div>
+      </div>
+      <div class="math-tool"><h3>Expression Evaluator</h3><p>Put a value into a simple expression <strong>ax + b</strong>.</p>
+        <div class="equation-row"><input id="exprA" type="number" value="3" aria-label="expression a"><span>x +</span><input id="exprB" type="number" value="2" aria-label="expression b"><span>, x =</span><input id="exprX" type="number" value="5" aria-label="x value"></div>
+        <button class="button secondary" id="evaluateExpression">Evaluate →</button><div class="math-result" id="exprResult">17</div>
+      </div>
+    </div>
+    <div class="math-nav"><button class="button secondary math-back" data-go="geometry">← Geometry</button><button class="button primary" id="mathComplete">Mathematics Complete ✓</button></div>
+  </div>
+</section>
+
+<section class="section tinted" id="biology">
+  <div class="section-heading"><p class="eyebrow">BIOLOGY</p><h2>Discover life.</h2><p>Explore cells, the human body and living things.</p></div>
+  <div class="cards biology-cards">
+    <article class="card biology-card"><div class="icon">🧬</div><h3>Cells</h3><p>Learn about cell structures such as the nucleus, membrane and mitochondria.</p><button class="text-button biology-action" data-topic="cells">Open Cell Lab →</button></article>
+    <article class="card biology-card"><div class="icon">🫀</div><h3>Human Body</h3><p>Explore major body systems and how they work together.</p><button class="text-button biology-action" data-topic="body">Explore Body →</button></article>
+    <article class="card biology-card"><div class="icon">🌱</div><h3>Living Things</h3><p>Learn how plants, animals and other organisms grow and survive.</p><button class="text-button biology-action" data-topic="living">Explore Life →</button></article>
+  </div>
+</section>
+
+
+<section class="section colour-section" id="colour-game"><div class="section-heading"><p class="eyebrow">COLOUR GAME</p><h2>Guess the colour.</h2><p>Read the RGB values, predict the colour, then test your answer. Your streak is saved on this device.</p></div><div class="colour-game"><div class="colour-preview" id="colourPreview"></div><div class="colour-controls"><div class="colour-values"><div><span>R</span><strong id="redValue">128</strong></div><div><span>G</span><strong id="greenValue">128</strong></div><div><span>B</span><strong id="blueValue">128</strong></div></div><div class="colour-choices" id="colourChoices"></div><div class="game-status"><span id="colourStreak">Streak 0</span><span id="colourScore">Score 0</span></div><button class="button primary" id="newColourRound">New colour →</button></div></div></section>
+
 <section class="section" id="quizzes">
   <div class="section-heading">
     <p class="eyebrow">SCIENCE QUIZ</p>
@@ -116,9 +192,18 @@
     <p>Answer a few questions and earn points. Your score is saved on this device.</p>
   </div>
   <div class="quiz-card">
+    <div class="quiz-subjects">
+      <button class="quiz-subject active" data-subject="mixed">🔬 Mixed</button>
+      <button class="quiz-subject" data-subject="chemistry">🧪 Chemistry</button>
+      <button class="quiz-subject" data-subject="astronomy">🌌 Astronomy</button>
+      <button class="quiz-subject" data-subject="mathematics">➗ Mathematics</button>
+      <button class="quiz-subject" data-subject="biology">🧬 Biology</button>
+      <button class="quiz-subject" data-subject="physics">⚛️ Physics</button>
+    </div>
+    <div class="quiz-difficulty">Difficulty: <select id="quizDifficulty"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></div>
     <div class="quiz-top"><span id="quizProgress">Question 1 of 5</span><strong id="quizPoints">0 points</strong></div>
-    <h3 id="quizQuestion">Loading question…</h3>
-    <div id="quizAnswers" class="quiz-answers"></div>
+    <h3 id="quizQuestion">Which cell structure contains most of the cell's genetic material?</h3>
+    <div id="quizAnswers" class="quiz-answers"><button class="quiz-answer" type="button">Cell wall</button><button class="quiz-answer" type="button">Nucleus</button><button class="quiz-answer" type="button">Ribosome</button><button class="quiz-answer" type="button">Vacuole</button></div>
     <p id="quizFeedback" class="quiz-feedback"></p>
     <button class="button primary hidden" id="nextQuestion">Next question →</button>
     <button class="button secondary hidden" id="restartQuiz">Restart quiz</button>
